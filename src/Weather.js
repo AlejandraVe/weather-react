@@ -80,13 +80,18 @@ export default function Weather() {
         </main>
         <footer>
           Coded by{" "}
-          <a href="https://github.com/AlejandraVe" target="_blank">
+          <a
+            href="https://github.com/AlejandraVe"
+            target="_blank"
+            rel="noreferrer"
+          >
             Alejandra Vera
           </a>
           , open-sourced{" "}
           <a
             href="https://github.com/AlejandraVe/my-weather-app-alejandrave/tree/main/src"
             target="_blank"
+            rel="noreferrer"
           >
             on Github
           </a>{" "}
@@ -94,6 +99,7 @@ export default function Weather() {
           <a
             href="https://my-weather-app-alejandrave.netlify.app/"
             target="_blank"
+            rel="noreferrer"
           >
             on Netlify
           </a>
@@ -128,7 +134,7 @@ export default function Weather() {
             <div class="today-details">
               <div class="todays-temperature">
                 <div id="emoji">
-                  <img src="http://openweathermap.org/img/wn/04n@2x.png" />
+                  <img src="http://openweathermap.org/img/wn/04n@2x.png" alt="icon_for_weather"/>
                 </div>
                 <span class="weather-app-unit" id="temperature-unit">
                   3
@@ -157,13 +163,18 @@ export default function Weather() {
         </main>
         <footer>
           Coded by{" "}
-          <a href="https://github.com/AlejandraVe" target="_blank">
+          <a
+            href="https://github.com/AlejandraVe"
+            target="_blank"
+            rel="noreferrer"
+          >
             Alejandra Vera
           </a>
           , open-sourced{" "}
           <a
             href="https://github.com/AlejandraVe/my-weather-app-alejandrave/tree/main/src"
             target="_blank"
+            rel="noreferrer"
           >
             on Github
           </a>{" "}
@@ -171,6 +182,7 @@ export default function Weather() {
           <a
             href="https://my-weather-app-alejandrave.netlify.app/"
             target="_blank"
+            rel="noreferrer"
           >
             on Netlify
           </a>
