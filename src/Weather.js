@@ -26,6 +26,7 @@ export default function Weather() {
 
   function updateCity(event) {
     setCity(event.target.value);
+    console.log(city);
   }
 
   if (loaded) {
@@ -117,6 +118,7 @@ export default function Weather() {
               type="search"
               placeholder="Enter a city..."
               required
+              onChange={updateCity}
             />
             <input class="submit-button" type="submit" value="🔍" />
           </form>
@@ -134,7 +136,10 @@ export default function Weather() {
             <div class="today-details">
               <div class="todays-temperature">
                 <div id="emoji">
-                  <img src="http://openweathermap.org/img/wn/04n@2x.png" alt="icon_for_weather"/>
+                  <img
+                    src="http://openweathermap.org/img/wn/04n@2x.png"
+                    alt="icon_for_weather"
+                  />
                 </div>
                 <span class="weather-app-unit" id="temperature-unit">
                   3
