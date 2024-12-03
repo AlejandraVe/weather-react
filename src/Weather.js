@@ -26,7 +26,6 @@ export default function Weather() {
 
   function updateCity(event) {
     setCity(event.target.value);
-    console.log(city);
   }
 
   if (loaded) {
@@ -125,7 +124,7 @@ export default function Weather() {
         </header>
         <main>
           <h1>
-            <span id="city-element">Dublin</span>
+            <span id="city-element">{city}</span>
             <br />
             <span class="country" id="country">
               Ireland
