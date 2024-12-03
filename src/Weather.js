@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 export default function Weather() {
+  const [newCity, setNewCity] = useState("");
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +25,7 @@ export default function Weather() {
     let apiKey = "a33b693cfbefd271b0ed075f9a8f65f0";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showWeather);
+    setNewCity(city);
   }
 
   function updateCity(event) {
@@ -30,35 +34,38 @@ export default function Weather() {
 
   if (loaded) {
     return (
-      <div class="wholePage">
+      <div className="wholePage">
         <header>
           <form id="search-form" onSubmit={handleSubmit}>
             <input
               id="search-input"
-              class="search-box"
+              className="search-box"
               type="search"
               placeholder="Enter a city..."
               required
+              autoFocus="on"
               onChange={updateCity}
             />
-            <input class="submit-button" type="submit" value="🔍" />
+            <input className="submit-button" type="submit" value="🔍" />
           </form>
         </header>
         <main>
           <h1>
-            <span id="city-element">{city}</span>
+            <span id="city-element">{newCity}</span>
             <br />
           </h1>
           <p>
-            <div class="today-details">
-              <div class="todays-temperature">
+            <div className="today-details">
+              <div className="todays-temperature">
                 <div id="emoji">
                   <img src={weather.icon} alt={weather.condition} />
                 </div>
-                <span class="weather-app-unit" id="temperature-unit"></span>
-                <div class="weather-app-celsius">{weather.temperature}°C</div>
+                <span className="weather-app-unit" id="temperature-unit"></span>
+                <div className="weather-app-celsius">
+                  {Math.round(weather.temperature)}°C
+                </div>
               </div>
-              <div class="wind-and-humidity">
+              <div className="wind-and-humidity">
                 Condition:{" "}
                 <strong>
                   <span id="description">{weather.condition}</span>
@@ -76,7 +83,7 @@ export default function Weather() {
               </div>
             </div>
           </p>
-          <div class="next-days" id="weather-forecast"></div>
+          <div className="next-days" id="weather-forecast"></div>
         </main>
         <footer>
           Coded by{" "}
@@ -108,62 +115,26 @@ export default function Weather() {
     );
   } else {
     return (
-      <div class="wholePage">
+      <div className="wholePage">
         <header>
           <form id="search-form" onSubmit={handleSubmit}>
             <input
               id="search-input"
-              class="search-box"
+              className="search-box"
               type="search"
               placeholder="Enter a city..."
               required
               onChange={updateCity}
             />
-            <input class="submit-button" type="submit" value="🔍" />
+            <input className="submit-button" type="submit" value="🔍" />
           </form>
         </header>
         <main>
           <h1>
-            <span id="city-element">{city}</span>
-            <br />
-            <span class="country" id="country">
-              Ireland
-            </span>
+            <span id="city-element"></span>
             <br />
           </h1>
-          <p>
-            <div class="today-details">
-              <div class="todays-temperature">
-                <div id="emoji">
-                  <img
-                    src="http://openweathermap.org/img/wn/04n@2x.png"
-                    alt="icon_for_weather"
-                  />
-                </div>
-                <span class="weather-app-unit" id="temperature-unit">
-                  3
-                </span>
-                <div class="weather-app-celsius">°C</div>
-              </div>
-              <div class="wind-and-humidity">
-                Condition:{" "}
-                <strong>
-                  <span id="description">rainy</span>
-                </strong>
-                <br />
-                Humidity:{" "}
-                <strong>
-                  <span id="humidity">60</span>%
-                </strong>
-                <br />
-                Wind:{" "}
-                <strong>
-                  <span id="wind">3.13</span>km/h
-                </strong>
-              </div>
-            </div>
-          </p>
-          <div class="next-days" id="weather-forecast"></div>
+          <div className="next-days" id="weather-forecast"></div>
         </main>
         <footer>
           Coded by{" "}

@@ -20,7 +20,7 @@ header {
 
 .search-box {
   padding: 15px;
-  width: 90%;
+  width: 82%;
   border-radius: 30px;
   border: none;
   box-shadow: 2px 2px 5px rgba(39, 33, 66, 0.4);
@@ -30,7 +30,8 @@ header {
 .submit-button {
   background-color: #ffdbc7;
   border: none;
-  font-size: 23px;
+  font-size: 28px;
+  margin: 10px;
 }
 
 .submit-button:hover {
