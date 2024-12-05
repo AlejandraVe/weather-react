@@ -4,14 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 export default function Weather() {
-  const [newCity, setNewCity] = useState("");
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({});
-  const [loaded, setLoaded] = useState(false);
+  const [weather, setWeather] = useState({ loaded: false});
 
   function showWeather(response) {
-    setLoaded(true);
     setWeather({
+      ready: true,
+      newCity: response.data.name,
       temperature: response.data.main.temp,
       condition: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -25,14 +24,13 @@ export default function Weather() {
     let apiKey = "a33b693cfbefd271b0ed075f9a8f65f0";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showWeather);
-    setNewCity(city);
   }
 
   function updateCity(event) {
     setCity(event.target.value);
   }
 
-  if (loaded) {
+  if (weather.loaded) {
     return (
       <div className="wholePage">
         <header>
@@ -51,7 +49,7 @@ export default function Weather() {
         </header>
         <main>
           <h1>
-            <span id="city-element">{newCity}</span>
+            <span id="city-element">{weather.newCity}</span>
             <br />
           </h1>
           <p>
@@ -68,7 +66,7 @@ export default function Weather() {
               <div className="wind-and-humidity">
                 Condition:{" "}
                 <strong>
-                  <span id="description">{weather.condition}</span>
+                  <span id="description" className="text-capitalize">{weather.condition}</span>
                 </strong>
                 <br />
                 Humidity:{" "}
@@ -131,10 +129,12 @@ export default function Weather() {
         </header>
         <main>
           <h1>
-            <span id="city-element"></span>
+            <br />
+            <span id="city-element">
+              <h3>Enter a city to show forecast of weather conditions</h3>
+            </span>
             <br />
           </h1>
-          <div className="next-days" id="weather-forecast"></div>
         </main>
         <footer>
           Coded by{" "}
