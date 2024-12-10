@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import CorrectDate from "./CorrectDate";
 
 export default function Weather() {
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({ loaded: false});
+  const [weather, setWeather] = useState({});
+  // const [loaded, setLoaded] = useState(false);
 
   function showWeather(response) {
     setWeather({
-      ready: true,
+      loaded: true,
       newCity: response.data.name,
       temperature: response.data.main.temp,
       condition: response.data.weather[0].description,
@@ -48,10 +50,15 @@ export default function Weather() {
           </form>
         </header>
         <main>
-          <h1>
-            <span id="city-element">{weather.newCity}</span>
-            <br />
-          </h1>
+          <div className="city-element">
+            <h1>
+              <span id="city-element">{weather.newCity}</span>
+              <br />
+            </h1>
+            <h4>
+              <CorrectDate date={weather.date} />
+            </h4>
+          </div>
           <p>
             <div className="today-details">
               <div className="todays-temperature">
@@ -66,7 +73,9 @@ export default function Weather() {
               <div className="wind-and-humidity">
                 Condition:{" "}
                 <strong>
-                  <span id="description" className="text-capitalize">{weather.condition}</span>
+                  <span id="description" className="text-capitalize">
+                    {weather.condition}
+                  </span>
                 </strong>
                 <br />
                 Humidity:{" "}
