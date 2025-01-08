@@ -12,6 +12,7 @@ export default function Weather() {
   function showWeather(response) {
     setWeather({
       loaded: true,
+      date: new Date(response.data.dt * 1000),
       newCity: response.data.name,
       temperature: response.data.main.temp,
       condition: response.data.weather[0].description,
@@ -55,7 +56,7 @@ export default function Weather() {
               <span id="city-element">{weather.newCity}</span>
               <br />
             </h1>
-            <h4>
+            <h4 className="date-element">
               <CorrectDate date={weather.date} />
             </h4>
           </div>
