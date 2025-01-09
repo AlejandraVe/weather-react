@@ -3,6 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import CorrectDate from "./CorrectDate";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function Weather() {
   const [city, setCity] = useState("");
@@ -64,11 +65,11 @@ export default function Weather() {
           <p>
             <div className="today-details">
               <div className="todays-temperature">
-                <div id="emoji">
+                <div>
                   <img src={weather.icon} alt={weather.condition} />
                 </div>
-                <div className="weather-app-celsius">
-                  {Math.round(weather.temperature)}°C
+                <div>
+                  <WeatherTemperature celsius={weather.temperature} />
                 </div>
               </div>
               <div className="wind-and-humidity">
