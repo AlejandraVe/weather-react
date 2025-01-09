@@ -27,6 +27,7 @@ export default function Weather() {
     let apiKey = "a33b693cfbefd271b0ed075f9a8f65f0";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showWeather);
+    console.log(url);
   }
 
   function updateCity(event) {
@@ -66,7 +67,6 @@ export default function Weather() {
                 <div id="emoji">
                   <img src={weather.icon} alt={weather.condition} />
                 </div>
-                <span className="weather-app-unit" id="temperature-unit"></span>
                 <div className="weather-app-celsius">
                   {Math.round(weather.temperature)}°C
                 </div>
@@ -124,7 +124,7 @@ export default function Weather() {
   } else {
     return (
       <div className="wholePage">
-        <header>
+        <header className="border-bottom-0">
           <form id="search-form" onSubmit={handleSubmit}>
             <input
               id="search-input"
@@ -137,15 +137,6 @@ export default function Weather() {
             <input className="submit-button" type="submit" value="🔍" />
           </form>
         </header>
-        <main>
-          <h1>
-            <br />
-            <span id="city-element">
-              <h3>Enter a city to show forecast of weather conditions</h3>
-            </span>
-            <br />
-          </h1>
-        </main>
         <footer>
           Coded by{" "}
           <a
