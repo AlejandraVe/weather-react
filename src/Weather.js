@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import CorrectDate from "./CorrectDate";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather() {
   const [city, setCity] = useState("");
@@ -66,7 +67,11 @@ export default function Weather() {
             <div className="today-details">
               <div className="todays-temperature">
                 <div>
-                  <img src={weather.icon} alt={weather.condition} />
+                  <img
+                    src={weather.icon}
+                    alt={weather.condition}
+                    className="big-emoji"
+                  />
                 </div>
                 <div>
                   <WeatherTemperature celsius={weather.temperature} />
@@ -92,7 +97,9 @@ export default function Weather() {
               </div>
             </div>
           </p>
-          <div className="next-days" id="weather-forecast"></div>
+          <div>
+            <WeatherForecast forecast={weather} />
+          </div>
         </main>
         <footer>
           Coded by{" "}
