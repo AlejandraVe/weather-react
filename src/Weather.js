@@ -9,7 +9,6 @@ import WeatherForecast from "./WeatherForecast";
 export default function Weather() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({});
-  // const [loaded, setLoaded] = useState(false);
 
   function showWeather(response) {
     setWeather({

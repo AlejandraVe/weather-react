@@ -1,85 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "./WeatherForecast.css";
 import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  const [forecast, setForecast] = useState("");
+
   function handleResponse(response) {
-    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
   }
 
-  let apiKey = "7746bdeabca928cfedcad71e52fd9d66";
-  let lat = 40.7;
-  let lon = 74;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-
-  console.log(apiUrl);
-
-  // axios.get(apiUrl).then(handleResponse);
-
-  return (
-    <div className="weather-forecast">
-      <div className="row">
-        <div className="col">
-          <div className="forecast-day">Sat</div>
-          <img
-            src={props.forecast.icon}
-            className="forecast-next-day"
-            alt="forecast-imgs"
-          ></img>
-          <div className="forecast-temperatures">
-            <span className="forecast-max-temperature">20º</span>
-            <span className="forecast-min-temperature">10º</span>
+  if (loaded) {
+    return (
+      <div className="weather-forecast">
+        <div className="row">
+          <div className="col">
+            <WeatherForecastDay data={forecast[1]} />
           </div>
-        </div>
-        <div className="col">
-          <div className="forecast-day">Sat</div>
-          <img
-            src={props.forecast.icon}
-            className="forecast-next-day"
-            alt="forecast-imgs"
-          ></img>
-          <div className="forecast-temperatures">
-            <span className="forecast-max-temperature">20º</span>
-            <span className="forecast-min-temperature">10º</span>
+          <div className="col">
+            <WeatherForecastDay data={forecast[2]} />
           </div>
-        </div>
-        <div className="col">
-          <div className="forecast-day">Sat</div>
-          <img
-            src={props.forecast.icon}
-            className="forecast-next-day"
-            alt="forecast-imgs"
-          ></img>
-          <div className="forecast-temperatures">
-            <span className="forecast-max-temperature">20º</span>
-            <span className="forecast-min-temperature">10º</span>
+          <div className="col">
+            <WeatherForecastDay data={forecast[3]} />
           </div>
-        </div>
-        <div className="col">
-          <div className="forecast-day">Sat</div>
-          <img
-            src={props.forecast.icon}
-            className="forecast-next-day"
-            alt="forecast-imgs"
-          ></img>
-          <div className="forecast-temperatures">
-            <span className="forecast-max-temperature">20º</span>
-            <span className="forecast-min-temperature">10º</span>
+          <div className="col">
+            <WeatherForecastDay data={forecast[4]} />
           </div>
-        </div>
-        <div className="col">
-          <div className="forecast-day">Sat</div>
-          <img
-            src={props.forecast.icon}
-            className="forecast-next-day"
-            alt="forecast-imgs"
-          ></img>
-          <div className="forecast-temperatures">
-            <span className="forecast-max-temperature">20º</span>
-            <span className="forecast-min-temperature">10º</span>
+          <div className="col">
+            <WeatherForecastDay data={forecast[5]} />
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "131b90447daa3e3cfco5aa3tc6e2b482";
+    let city = `${props.forecast.newCity}`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+
+    console.log(apiUrl);
+
+    axios.get(apiUrl).then(handleResponse);
+
+    return null;
+  }
 }
