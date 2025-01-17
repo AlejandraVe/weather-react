@@ -61,7 +61,7 @@ export default function Weather() {
               <CorrectDate date={weather.date} />
             </h4>
           </div>
-          <p>
+          <div>
             <div className="today-details">
               <div className="todays-temperature">
                 <div>
@@ -94,7 +94,7 @@ export default function Weather() {
                 </strong>
               </div>
             </div>
-          </p>
+          </div>
           <div>
             <WeatherForecast forecast={weather} />
           </div>
